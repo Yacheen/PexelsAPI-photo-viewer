@@ -27,12 +27,22 @@ header {
 }
 
 header h2 {
+  font-size: 3rem;
   padding: 2rem;
+  text-align: center;
+}
+
+header h3 {
+  padding: 1rem;
+  pointer-events: none;
+  line-height: 2rem;
+  text-align: center;
+  color: #302e2e;
 }
 
 #logo {
   text-decoration: none;
-  color: black;
+  color: #302e2e;
 }
 
 .search-form {
