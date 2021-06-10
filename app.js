@@ -68,12 +68,14 @@ async function searchPhotos(query) {
     fetchLink = `https://api.pexels.com/v1/search?query=${query}`
     const data = await fetchApi(fetchLink);
     generatePictures(data);
+    searchInput.value = query
 }
 
 function clear() {
     gallery.innerHTML = '';
     searchInput.value = '';
 }
+
 async function loadMore() {
     page++;
     if(currentSearch) {
