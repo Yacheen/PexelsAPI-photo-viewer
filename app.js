@@ -1,5 +1,6 @@
 const auth = '563492ad6f917000010000015da9d32a28de4c629331e46a7a44fdc5';
 const gallery = document.querySelector('.gallery');
+const galleryImg = document.querySelector('.gallery-img');
 const searchInput = document.querySelector('.search-input');
 const form = document.querySelector('.search-form');
 const moreButton = document.querySelector('.more');
@@ -48,7 +49,9 @@ function generatePictures(data) {
             <p> ${photo.photographer} </p>
             <a href="${photo.src.original}" target="blank">Download</a>
         </div>
+        <div class="image-container">
         <img src=${photo.src.large}></img>
+        </div>
         
         `;
         gallery.append(galleryImg);
@@ -90,3 +93,37 @@ async function loadMore() {
 }
 
 curatedPhotos();
+
+
+const opacityChanger = document.getElementById('image-clicked');
+const allImages = document.querySelectorAll('.gallery');
+const original = document.querySelector('.full-image');
+const galleryInfo = document.querySelector('.gallery, .gallery-img, .gallery-info');
+const body = document.querySelector('body');
+
+
+//loop through all images to listen on where they click, then preview the image
+//if they click off of it, remove preview
+allImages.forEach(image => {
+    
+    image.addEventListener('click', (data) => {
+        //remove hover on the image they clicked
+        
+        image.style = "pointer-events: none;";
+        opacityChanger.classList.add('open')
+        original.classList.add('open')
+        const originalSrc = data.target.src;
+        original.src = originalSrc;
+
+        opacityChanger.addEventListener('click', (e) => {
+            if(e.target.classList.contains('open') && e.target == document.querySelector('#image-clicked')) {
+                opacityChanger.classList.remove('open');
+                original.classList.remove('open')
+                image.style = "pointer-events: all;";  
+            }
+        })
+    })
+})
+
+
+
