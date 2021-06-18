@@ -4,6 +4,10 @@ const galleryImg = document.querySelector('.gallery-img');
 const searchInput = document.querySelector('.search-input');
 const form = document.querySelector('.search-form');
 const moreButton = document.querySelector('.more');
+const opacityChanger = document.getElementById('image-clicked');
+const allImages = document.querySelectorAll('.gallery-img');
+const original = document.querySelector('.full-image');
+const body = document.querySelector('body');
 let page = 1;
 let fetchLink = '';
 let currentSearch;
@@ -54,8 +58,26 @@ function generatePictures(data) {
         </div>
         
         `;
+
         gallery.append(galleryImg);
-    });
+        galleryImg.addEventListener('click', (data) => {
+            //remove hover on the image they clicked
+            
+            galleryImg.style = "pointer-events: none;";
+            opacityChanger.classList.add('open')
+            original.classList.add('open')
+            const originalSrc = data.target.src;
+            original.src = originalSrc;
+    
+            opacityChanger.addEventListener('click', (e) => {
+                if(e.target.classList.contains('open') && e.target == document.querySelector('#image-clicked')) {
+                    opacityChanger.classList.remove('open');
+                    original.classList.remove('open')
+                    galleryImg.style = "pointer-events: all;";  
+                }
+            })
+        })
+    })
 }
 
 //this async function fetches data from curated photos
@@ -93,37 +115,3 @@ async function loadMore() {
 }
 
 curatedPhotos();
-
-
-const opacityChanger = document.getElementById('image-clicked');
-const allImages = document.querySelectorAll('.gallery');
-const original = document.querySelector('.full-image');
-const galleryInfo = document.querySelector('.gallery, .gallery-img, .gallery-info');
-const body = document.querySelector('body');
-
-
-//loop through all images to listen on where they click, then preview the image
-//if they click off of it, remove preview
-allImages.forEach(image => {
-    
-    image.addEventListener('click', (data) => {
-        //remove hover on the image they clicked
-        
-        image.style = "pointer-events: none;";
-        opacityChanger.classList.add('open')
-        original.classList.add('open')
-        const originalSrc = data.target.src;
-        original.src = originalSrc;
-
-        opacityChanger.addEventListener('click', (e) => {
-            if(e.target.classList.contains('open') && e.target == document.querySelector('#image-clicked')) {
-                opacityChanger.classList.remove('open');
-                original.classList.remove('open')
-                image.style = "pointer-events: all;";  
-            }
-        })
-    })
-})
-
-
-
