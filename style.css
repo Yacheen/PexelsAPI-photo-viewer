@@ -76,6 +76,9 @@ header h3 {
   color: #363636;
   padding-top: 0.5rem 0rem;
   padding-bottom: 1rem;
+}
+
+.gallery-info p {
   pointer-events: none;
 }
 

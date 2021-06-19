@@ -60,10 +60,33 @@ function generatePictures(data) {
         `;
 
         gallery.append(galleryImg);
+        
+        for(let i = 0; i < allImages.length; i++) {
+    
+            allImages[i].addEventListener('click', (data) => {
+                
+                //remove hover on the image they clicked
+                
+                allImages[i].style = "pointer-events: none;";
+                opacityChanger.classList.add('open')
+                original.classList.add('open')
+                const originalSrc = data.target.src;
+                original.src = originalSrc;
+            
+                opacityChanger.addEventListener('click', (e) => {
+                    if(e.target.classList.contains('open') && e.target == document.querySelector('#image-clicked')) {
+                        opacityChanger.classList.remove('open');
+                        original.classList.remove('open')
+                        allImages[i].style = "pointer-events: all;";  
+                    }
+                })
+            })
+        
+        }
 
     })
 }
-
+console.log(allImages)
 //this async function fetches data from curated photos
 async function curatedPhotos() {
     fetchLink = 'https://api.pexels.com/v1/curated?per_page=15&page=1';
@@ -100,23 +123,5 @@ async function loadMore() {
 
 curatedPhotos();
 
-allImages.forEach(image => {
-    image.addEventListener('click', (data) => {
-        //remove hover on the image they clicked
-        
-        image.style = "pointer-events: none;";
-        opacityChanger.classList.add('open')
-        original.classList.add('open')
-        const originalSrc = data.target.src;
-        original.src = originalSrc;
-    
-        opacityChanger.addEventListener('click', (e) => {
-            if(e.target.classList.contains('open') && e.target == document.querySelector('#image-clicked')) {
-                opacityChanger.classList.remove('open');
-                original.classList.remove('open')
-                image.style = "pointer-events: all;";  
-            }
-        })
-    })
 
-})
+
