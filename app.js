@@ -60,7 +60,7 @@ function generatePictures(data) {
         `;
 
         gallery.append(galleryImg);
-        
+
     })
 }
 
