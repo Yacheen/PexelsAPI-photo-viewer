@@ -8,6 +8,7 @@ const opacityChanger = document.getElementById('image-clicked');
 const allImages = document.getElementsByClassName('image-container');
 const original = document.querySelector('.full-image');
 const body = document.querySelector('body');
+const exitBtn = document.querySelector('.fa-times');
 let page = 1;
 let fetchLink = '';
 let currentSearch;
@@ -51,7 +52,7 @@ function generatePictures(data) {
         galleryImg.innerHTML = `
         <div class="gallery-info">
             <p> ${photo.photographer} </p>
-            <a href="${photo.src.original}" target="blank">Download</a>
+            <a class="download" href="${photo.src.original}" target="blank">HD Download</a>
         </div>
         <div class="image-container">
         <img src=${photo.src.large}></img>
@@ -70,6 +71,7 @@ function generatePictures(data) {
                 allImages[i].style = "pointer-events: none;";
                 opacityChanger.classList.add('open')
                 original.classList.add('open')
+                exitBtn.classList.add('open');
                 const originalSrc = data.target.src;
                 original.src = originalSrc;
             
@@ -77,6 +79,7 @@ function generatePictures(data) {
                     if(e.target.classList.contains('open') && e.target == document.querySelector('#image-clicked')) {
                         opacityChanger.classList.remove('open');
                         original.classList.remove('open')
+                        exitBtn.classList.remove('open');
 
                     }
                     allImages[i].style = "pointer-events: all;";  

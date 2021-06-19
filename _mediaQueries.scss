@@ -2,4 +2,18 @@
   .gallery {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
+  #image-clicked {
+    background: rgba(0, 0, 0, 0.95);
+  }
+  .fas {
+    pointer-events: none !important;
+    color: white;
+    position: fixed;
+    left: 8%;
+    top: 3%;
+    opacity: 0;
+  }
+  .fas.open {
+    opacity: 1;
+  }
 }

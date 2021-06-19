@@ -56,6 +56,9 @@ header {
   p {
     pointer-events: none;
   }
+  .download {
+    white-space: nowrap;
+  }
 }
 a {
   color: rgb(54, 54, 54);
@@ -130,11 +133,16 @@ a {
   position: absolute;
   top: 50%;
   left: 50%;
+  max-width: 80vw;
+  max-height: 70vh;
   transform: translate(-50%, -50%) scale(0.9);
   transition: all 0.15s ease-out;
 }
 .full-image.open {
   transform: translate(-50%, -50%) scale(1);
+}
+.fa-times {
+  opacity: 0;
 }
 
 @import "./mediaQueries";
