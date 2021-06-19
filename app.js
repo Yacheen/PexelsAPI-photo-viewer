@@ -77,10 +77,14 @@ function generatePictures(data) {
                     if(e.target.classList.contains('open') && e.target == document.querySelector('#image-clicked')) {
                         opacityChanger.classList.remove('open');
                         original.classList.remove('open')
-                        allImages[i].style = "pointer-events: all;";  
+
                     }
+                    allImages[i].style = "pointer-events: all;";  
                 })
+                
             })
+            
+           
         
         }
 
