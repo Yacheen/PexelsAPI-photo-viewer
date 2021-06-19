@@ -10,16 +10,19 @@
 <body>
     <header>
         <h2><a id="logo" href="./index.html">Photo Viewer</a></h2>
-        <h3>Search for high quality photos here<br> Just type anything, like "corgis"</h3>
+        <h3>Search for Curated photos that have been uploaded<br> by the Pexels community here<br> Just type anything you like, such as corgis, or even galaxies!</h3>
         <form class="search-form">
             <input type="text" name="search" class="search-input" required>
             <button type="submit" class="submit-btn">Search</button>
         </form>
     </header>
-
+    <div id="image-clicked">
+        <img src="" alt="" class="full-image">
+    </div>
     <main>
         <div class="gallery"></div>
     </main>
+    
     <div class="more-button">
         <button class="more">More</button>
     </div>
