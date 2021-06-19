@@ -5,7 +5,7 @@ const searchInput = document.querySelector('.search-input');
 const form = document.querySelector('.search-form');
 const moreButton = document.querySelector('.more');
 const opacityChanger = document.getElementById('image-clicked');
-const allImages = document.querySelectorAll('.gallery-img');
+const allImages = document.getElementsByClassName('image-container');
 const original = document.querySelector('.full-image');
 const body = document.querySelector('body');
 let page = 1;
@@ -60,23 +60,7 @@ function generatePictures(data) {
         `;
 
         gallery.append(galleryImg);
-        galleryImg.addEventListener('click', (data) => {
-            //remove hover on the image they clicked
-            
-            galleryImg.style = "pointer-events: none;";
-            opacityChanger.classList.add('open')
-            original.classList.add('open')
-            const originalSrc = data.target.src;
-            original.src = originalSrc;
-    
-            opacityChanger.addEventListener('click', (e) => {
-                if(e.target.classList.contains('open') && e.target == document.querySelector('#image-clicked')) {
-                    opacityChanger.classList.remove('open');
-                    original.classList.remove('open')
-                    galleryImg.style = "pointer-events: all;";  
-                }
-            })
-        })
+        
     })
 }
 
@@ -115,3 +99,24 @@ async function loadMore() {
 }
 
 curatedPhotos();
+
+allImages.forEach(image => {
+    image.addEventListener('click', (data) => {
+        //remove hover on the image they clicked
+        
+        image.style = "pointer-events: none;";
+        opacityChanger.classList.add('open')
+        original.classList.add('open')
+        const originalSrc = data.target.src;
+        original.src = originalSrc;
+    
+        opacityChanger.addEventListener('click', (e) => {
+            if(e.target.classList.contains('open') && e.target == document.querySelector('#image-clicked')) {
+                opacityChanger.classList.remove('open');
+                original.classList.remove('open')
+                image.style = "pointer-events: all;";  
+            }
+        })
+    })
+
+})
